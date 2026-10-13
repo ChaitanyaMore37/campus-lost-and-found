@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Campus Lost and Found</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<header><a class="brand" href="/" aria-label="Campus Lost and Found home"><span class="brand-icon">↔</span> Campus <strong>Lost & Found</strong></a><span class="header-note">A little help goes a long way.</span></header>
+<main>
+  <section class="intro"><div><p class="eyebrow">THE CAMPUS NOTICEBOARD</p><h1>Lost it? Let's find it.</h1><p>One place for misplaced things and helpful people.<br>Report an item, find a match, and bring it home.</p></div><button id="new-item" class="primary">+ Report an item</button></section>
+  <section class="stats" aria-label="Noticeboard totals"><div><span class="stat-label"><i class="dot amber"></i> Lost items</span><strong id="lost-count">—</strong><small>Still looking for their owners</small></div><div><span class="stat-label"><i class="dot teal"></i> Found items</span><strong id="found-count">—</strong><small>Waiting to be collected</small></div><div><span class="stat-label"><i class="dot blue"></i> Returned</span><strong id="returned-count">—</strong><small>Back where they belong</small></div></section>
+  <section class="board" aria-labelledby="board-title"><div class="board-heading"><h2 id="board-title">The noticeboard</h2><span id="result-count" aria-live="polite"></span></div>
+    <form id="filters" class="filters" role="search"><label class="search-label"><span class="sr-only">Search items or locations</span><input id="search" name="q" type="search" maxlength="80" placeholder="Search items, descriptions or locations..."></label><label><span class="sr-only">Item type</span><select id="type-filter" name="type"><option value="all">All types</option><option value="Lost">Lost</option><option value="Found">Found</option></select></label><label><span class="sr-only">Item status</span><select id="status-filter" name="status"><option value="all">All statuses</option><option value="Open">Open</option><option value="Returned">Returned</option></select></label><button class="secondary" type="submit">Search</button><button id="clear-filters" type="button" class="text-button">Reset</button></form>
+    <p id="message" role="status" aria-live="polite" hidden></p>
+    <div id="items" class="items"><p>Loading the noticeboard...</p></div>
+  </section>
+  <aside class="tip"><strong>Found a possible match?</strong> Contact the campus desk listed on the notice. Confirm identifying details before handing over an item.</aside>
+</main>
+<footer><span>Campus Lost & Found</span><span>Mini project · Chaitanya More · IT-A · Roll no. 50</span></footer>
+<dialog id="item-dialog" aria-labelledby="dialog-title"><form id="item-form"><div class="dialog-heading"><div><p class="eyebrow">HELP AN ITEM FIND ITS WAY HOME</p><h2 id="dialog-title">Report an item</h2></div><button id="close-dialog" type="button" class="close" aria-label="Close form">×</button></div>
+<p class="form-hint">All fields are required. Use a campus collection point for contact details.</p>
+<div class="form-grid"><label>Report type<select name="type" required><option value="Lost">I lost something</option><option value="Found">I found something</option></select></label><label>Date lost or found<input name="date" type="date" required></label></div>
+<label>Item name<input name="title" required maxlength="80" placeholder="e.g. Blue water bottle"></label>
+<label>Description<textarea name="description" required maxlength="500" rows="3" placeholder="Colour, brand, or other helpful details"></textarea></label>
+<div class="form-grid"><label>Location<input name="location" required maxlength="100" placeholder="e.g. Library, second floor"></label><label>Contact or collection point<input name="contact" required maxlength="120" placeholder="e.g. Library help desk"></label></div>
+<label id="status-field" hidden>Status<select name="status"><option value="Open">Open</option><option value="Returned">Returned</option></select></label>
+<p id="form-error" role="alert" hidden></p><div class="form-actions"><button type="button" id="cancel-form" class="secondary">Cancel</button><button class="primary" id="save-item" type="submit">Save report</button></div>
+</form></dialog>
+<template id="item-template"><article class="item-card"><div class="card-top"><span class="badge type-badge"></span><span class="item-date"></span></div><h3></h3><p class="description"></p><dl><div><dt>Location</dt><dd class="location"></dd></div><div><dt>Contact</dt><dd class="contact"></dd></div></dl><div class="card-bottom"><span class="status-label"></span><div class="card-actions"><button class="return-button text-button">Mark returned</button><button class="edit-button text-button">Edit</button><button class="delete-button text-button">Delete</button></div></div></article></template>
+</body></html>
