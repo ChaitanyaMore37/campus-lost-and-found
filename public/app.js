@@ -1,3 +1,6 @@
+const demoApi = document.querySelector('meta[name="app-mode"]')?.content === 'demo'
+  ? import('./pages-store.js') : null;
+
 const $ = selector => document.querySelector(selector);
 const dialog = $('#item-dialog');
 const form = $('#item-form');
@@ -5,6 +8,7 @@ let editingId = null;
 let loadVersion = 0;
 
 async function api(path, options = {}) {
+  if (demoApi) return (await demoApi).request(path, options);
   const response = await fetch(path, { ...options, headers: { 'Content-Type': 'application/json' } });
   if (response.status === 204) return null;
   const data = await response.json();

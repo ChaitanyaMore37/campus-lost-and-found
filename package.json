@@ -4,7 +4,19 @@
   "private": true,
   "description": "Simple full-stack lost and found mini project by Chaitanya More",
   "type": "module",
-  "engines": { "node": ">=22" },
-  "scripts": { "start": "node server.js", "demo": "node scripts/demo.js", "seed": "node scripts/seed.js", "test": "node --test --test-concurrency=1" },
-  "dependencies": { "express": "5.1.0", "mongodb": "6.20.0" }
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "demo": "node scripts/demo.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --test --test-concurrency=1",
+    "build:pages": "node scripts/build-pages.js",
+    "test:pages": "node --test test/pages.test.js"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "mongodb": "6.20.0"
+  }
 }

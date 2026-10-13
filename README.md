@@ -4,6 +4,14 @@ A small full-stack mini project by **Chaitanya More**, roll no. **50**, class/di
 
 Students often lose bottles, calculators, notebooks, and other items around campus. This app keeps lost and found notices in one searchable place. It uses plain HTML, CSS and JavaScript, an Express REST API, and a real MongoDB database.
 
+## Live demo
+
+https://chaitanyamore37.github.io/campus-lost-and-found/
+
+GitHub Pages hosts a clearly labelled **browser-only demonstration**. It starts with three fictional notices and saves changes in localStorage on that browser. Notices are not shared between visitors; clearing site data resets the demo. It does not connect to MongoDB. The full-stack version below uses the real Express API and MongoDB database.
+
+The Pages workflow builds only the frontend into `dist/` and deploys it on pushes to `main`. No backend files, database files or dependencies are published to Pages. Run `npm run test:pages` and `npm run build:pages` to verify and build this version locally. The generated `dist/` folder is ignored by Git.
+
 ## Requirements
 
 - Node.js 22 or newer (npm is included)
@@ -79,7 +87,7 @@ Keep `npm run demo` running, then run in another terminal:
 npm test
 ```
 
-The 11 integration tests cover empty data, create, read, search, filters, edit, status counters, server restart persistence, invalid inputs, invalid IDs, malformed JSON, cross-origin changes and deletion. They create a uniquely named `campus_test_*` database and delete only that test database afterwards. They do not change your demo records.
+The API integration tests cover empty data, create, read, search, filters, edit, status counters, server restart persistence, invalid inputs, invalid IDs, malformed JSON, cross-origin changes and deletion. They create a uniquely named `campus_test_*` database and delete only that test database afterwards. They do not change your demo records.
 
 ## Project structure
 
@@ -92,8 +100,11 @@ public/app.js          Fetch calls, filtering and safe DOM rendering
 scripts/demo.js        Starts the local database and app together
 scripts/seed.js        Adds optional fictional demo notices
 test/api.test.js      Integration tests against real MongoDB
+scripts/build-pages.js Builds the static Pages demo
+scripts/pages-store.js Browser-only storage adapter for Pages
+test/pages.test.js     Tests for the Pages demo
+.github/workflows/     Automatic Pages deployment
 package-lock.json      Exact dependency versions for npm ci
-VIVA_GUIDE.md           Short explanation and demonstration script
 ```
 
 ## Database

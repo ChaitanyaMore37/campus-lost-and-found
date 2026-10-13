@@ -1,0 +1,12 @@
+import { cp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+const root = new URL('../', import.meta.url);
+const dist = new URL('dist/', root);
+await rm(dist, { recursive: true, force: true });
+await mkdir(dist, { recursive: true });
+await cp(new URL('public/', root), dist, { recursive: true });
+await cp(new URL('pages-store.js', import.meta.url), new URL('pages-store.js', dist));
+const html = await readFile(new URL('index.html', dist), 'utf8');
+await writeFile(new URL('index.html', dist), html.replace('<head>', '<head>\n  <meta name="app-mode" content="demo">').replace('<main>', '<main>\n  <p class="demo-notice"><strong>Interactive demo</strong> — sample notices and your changes are saved only in this browser. They are not shared with other visitors. The full Express/MongoDB app is available in the <a href="https://github.com/ChaitanyaMore37/campus-lost-and-found">source repository</a>.</p>'));
+await writeFile(new URL('.nojekyll', dist), '');
+console.log(`GitHub Pages demo built in ${fileURLToPath(dist)}`);
